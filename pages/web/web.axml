@@ -1,0 +1,3 @@
+<view>
+  <web-view src="https://huanong.beixibaobao.com" id="web-view-1" onMessage="onMessage"/>
+</view>

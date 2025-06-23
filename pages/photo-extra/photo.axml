@@ -1,0 +1,22 @@
+
+<view class="page"> 
+  <view class="top">
+    <camera device-position="back" flash="off" binderror="error" class="camera" id="camera" style="width: 100vw; height: 75vh;"></camera>
+    <!-- <canvas id="water" canvas-id="water" style="width: 100vw; height: 75vh;" a:if="{{show}}" onTap="showWater"></canvas> -->
+    <view class="btm">
+      <view >
+        <view class="page-section">
+          <picker onChange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view class="row">
+              <view class="row-extra test">当前：{{array[index]}}</view>
+            </view>
+          </picker>
+        </view>
+      
+      </view>
+      <view><button type="secondary" onTap="takePhoto2" class="btn"></button></view>
+      <view></view>
+    </view>
+  </view>
+
+</view>

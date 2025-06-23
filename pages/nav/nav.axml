@@ -1,0 +1,6 @@
+<view class="container">
+  <button size="default" type="primary" onTap="toPhoto">定位拍照</button>
+  <button size="default" type="primary" onTap="toWeb">田地调查</button>
+  <button size="default" type="primary" onTap="toPhotoExtra">拍照密度输入</button>
+  <button size="default" type="primary" onTap="toPhoto">拍照记录</button>
+</view>

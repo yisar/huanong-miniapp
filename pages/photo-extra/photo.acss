@@ -1,0 +1,85 @@
+/**index.wxss**/
+.page {
+  height: 100vh;
+  background: #fefefe;
+}
+
+.show {
+  opacity: 1;
+}
+
+.hide {
+  opacity: 0;
+}
+
+.preview,
+.camera {
+  width: 100vw;
+  height: 75vh;
+}
+
+.scrollarea {
+  flex: 1;
+  overflow-y: hidden;
+}
+
+.btn {
+  /* position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%); */
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  color: #000;
+  border: 0;
+  z-index: 999999;
+  margin: auto;
+  padding: 5px;
+  border: 5px solid rgb(99, 207, 217);
+  background-color: #fff;
+  box-shadow: 0 0 0 10px rgba(2, 255, 255, 0.5);
+}
+
+.btm {
+  width: 100vw;
+  height: 25vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  font-weight: bold;
+  color: turquoise;
+}
+
+.top {
+  position: relative;
+  width: 100vw;
+  height: 75vh;
+}
+
+#water {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.test {
+  color:  rgb(99, 207, 217);
+  /* background-color: #fff; */
+  background: rgba(2, 255, 255, 0.5);
+  margin: 10px;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.btm view{
+  flex: 1;
+}

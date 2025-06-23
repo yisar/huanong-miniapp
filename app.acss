@@ -1,0 +1,28 @@
+page {
+  background: #f7f7f7;
+}
+
+button {
+  flex: 1;
+  aspect-ratio: 1;
+  margin: 10px auto;
+  border-radius: 10px;
+  width: 90%;
+  box-sizing: border-box;
+  background: #2b7057;
+  border: 1px solid #2b7057;
+
+}
+
+input {
+  flex: 1;
+  aspect-ratio: 1;
+  margin: 10px auto;
+  border-radius: 10px;
+  width: 90%;
+  box-sizing: border-box;
+  border: 1px solid #2b7057;
+  padding: 10px;
+  display: block;
+  height: 40px;
+}
