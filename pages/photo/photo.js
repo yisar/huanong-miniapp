@@ -110,54 +110,6 @@ Page({
   onReachBottom() {
     // 页面被拉到底部
   },
-  onCanvasReady() {
-    my.createSelectorQuery().select('#canvas').node().exec((res) => {
-      const canvas = res[0].node
-      const {
-        windowWidth,
-        windowHeight,
-        pixelRatio
-      } = my.getSystemInfoSync();
-      canvas.width = windowWidth * pixelRatio
-      canvas.height = (windowHeight * 0.75) * pixelRatio
-    })
-  },
-  drawWatermark() {
-    const ctx = my.createCanvasContext('water');
-    const {
-      windowWidth,
-      windowHeight,
-      pixelRatio
-    } = my.getSystemInfoSync();
-
-    // ctx.save()
-    ctx.setTransform(1, 0, 0, 1, 0, 0)
-
-    ctx.scale(1 / pixelRatio, 1 / pixelRatio)
-
-
-    // 绘制原图（按屏幕宽度缩放）
-    ctx.drawImage(this.data.photo, 0, 0, windowWidth * pixelRatio, (windowHeight * 0.75) * pixelRatio);
-
-    // 设置水印样式
-    ctx.setFontSize(14 * pixelRatio);
-    ctx.setFillStyle('rgba(64,224,208)');
-
-    // 平铺水印文字
-    console.log(this.data.lat, this.data.lon)
-    ctx.fillText(`方位:${this.data.deg}°${this.data.dir}`, 8, 20 * pixelRatio);
-    ctx.fillText(`经度:${this.data.lat}`, 8, 40 * pixelRatio);
-    ctx.fillText(`纬度:${this.data.lon}`, 8, 60 * pixelRatio);
-    ctx.draw(false, () => {
-      // this.canvasToImage(windowWidth, (windowHeight * 0.75), pixelRatio)
-      // this.saveImage(res.apFilePath)
-    });
-    // console.log(this.data.height)
-
-    // ctx.restore()
-
-
-  },
   showWater() {
     this.setData({
       show: false
@@ -193,24 +145,7 @@ Page({
     });
 
   },
-  canvasToImage(w, h, p) {
-    my.canvasToTempFilePath({
-      canvasId: 'water',
-      width: w,
-      height: h,
-      destWidth: w * p,
-      destHeight: h * p,
-      success: (res) => {
-        this.saveImage(res.apFilePath)
-      },
-      fail: (err) => {
-        my.alert({
-          title: '生成失败',
-          content: JSON.stringify(err)
-        });
-      }
-    })
-  },
+
   getCurrentLocation() {
     const that = this
     setInterval(() => {
@@ -329,11 +264,7 @@ Page({
           setTimeout(() => {
             that.uploadImage()
           }, 1000)
-
-
           this.saveImage(tempFilePath)
-
-          // this.drawWatermark()
         })
 
       }
