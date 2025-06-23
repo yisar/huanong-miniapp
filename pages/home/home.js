@@ -24,7 +24,7 @@ Page({
     if (this.data.inputValue!=='') {
       my.setStorageSync({
         key: 'userstring',
-        data: this.data.inputValue
+        data: this.data.inputValue || ''
       })
 
       this.setData({

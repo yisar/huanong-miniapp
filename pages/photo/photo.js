@@ -16,20 +16,11 @@ Page({
     index: 0,
   },
   onLoad(query) {
-    // 页面加载
     const user = my.getStorageSync({key:'userstring'})
     console.log(user)
     this.setData({
       user: user.data
     })
-    // const tests = my.getStorageSync({
-    //   key: "tests"
-    // })
-
-    // this.setData({
-    //   array: tests.data || [],
-    //   index: 0
-    // })
 
   },
   bindPickerChange(e) {
@@ -266,7 +257,6 @@ Page({
           }, 1000)
           this.saveImage(tempFilePath)
         })
-
       }
     })
   }
