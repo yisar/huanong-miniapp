@@ -1,3 +1,7 @@
+import {
+  addMetadata
+} from './extf'
+
 function stringToArrayBuffer(str) {
   const array = new Uint8Array(str.length);
   for (let i = 0; i < str.length; i++) {
@@ -6,17 +10,18 @@ function stringToArrayBuffer(str) {
   return array.buffer;
 }
 
+
 Page({
   data: {
     show: false,
-    height: 0,
     photo: '',
     test: '',
-    array: [],
     index: 0,
   },
   onLoad(query) {
-    const user = my.getStorageSync({key:'userstring'})
+    const user = my.getStorageSync({
+      key: 'userstring'
+    })
     console.log(user)
     this.setData({
       user: user.data
@@ -155,18 +160,20 @@ Page({
       });
     }, 1000)
   },
-  uploadImage() {
+  uploadImage(path) {
+    console.log(path)
     const that = this
     my.uploadFile({
-      filePath: that.data.photo,
+      filePath: path || that.data.photo,
       url: "https://tuchuang.deno.dev/taobao-proxy",
       name: "upload",
       hideLoading: true,
       fileType: "image",
       success(res) {
+        console.log(1234)
         const data = JSON.parse(res.data)
         console.log(data.path)
-        const name = that.data.array[that.data.index]
+        const name = that.data.user
 
         my.request({
           url: `https://huanong.beixibaobao.com/api/photo`,
@@ -200,38 +207,45 @@ Page({
       }
     })
   },
-  modifyImage() {
+  async modifyImage(pp) {
     const that = this
-    my.getFileSystemManager().readFile({
-      filePath: this.data.photo, // 图片路径
-      encoding: 'binary', // 以二进制方式读取
-      success(res) {
-        let data = res.data;
-        const customInfo = 'This is custom info'; // 自定义信息
-        const aaa = stringToArrayBuffer(customInfo)
-        // const customInfoBuffer = my.arrayBufferToBase64(aaa); // 将自定义信息转换为二进制
+    return new Promise(r => {
+      my.getFileSystemManager().readFile({
+        filePath: pp, // 图片路径
 
-        data += aaa; // 将自定义信息追加到文件末尾
+        // encoding: 'binary', // 以二进制方式读取
+        success(res) {
+          let data = res.data;
+          const customInfo = `${that.data.lat},${that.data.lon},${that.data.deg}`; // 自定义信息
+          const aaa = stringToArrayBuffer(customInfo)
+          // const customInfoBuffer = my.arrayBufferToBase64(aaa); // 将自定义信息转换为二进制
+          // console.log(data, aaa)
 
-        console.log(that.data.photo)
+          const buffer = addMetadata(data, "CustomMetadata",customInfo);
 
+          console.log(buffer)
 
-        my.getFileSystemManager().writeFile({
-          filePath: that.data.photo, // 修改后的文件路径
-          data: data,
-          encoding: 'binary',
-          success() {
-            console.log('Custom info added successfully.');
-          },
-          fail(err) {
-            console.error('Failed to write file:', err);
-          }
-        });
-      },
-      fail(err) {
-        console.error('Failed to read file:', err);
-      }
-    });
+          const path = `${my.env.USER_DATA_PATH}/test.png`
+          my.getFileSystemManager().writeFile({
+            // filePath: that.data.photo, // 修改后的文件路径
+            filePath: path,
+            data: buffer,
+            encoding: 'binary',
+            success() {
+              console.log('Custom info added successfully.');
+              r(path)
+            },
+            fail(err) {
+              console.error('Failed to write file:', err);
+            }
+          });
+        },
+        fail(err) {
+          console.error('Failed to read file:', err);
+        }
+      });
+    })
+
   },
   takePhoto2() {
     const that = this
@@ -248,14 +262,16 @@ Page({
         const tempFilePath = res.tempImagePath
         that.setData({
           photo: tempFilePath,
-        }, () => {
+        }, async () => {
 
-          that.modifyImage()
+          // const path = await that.modifyImage(tempFilePath)
+          // console.log(path)
+          const path = tempFilePath
 
           setTimeout(() => {
-            that.uploadImage()
+            that.uploadImage(path)
           }, 1000)
-          this.saveImage(tempFilePath)
+          this.saveImage(path)
         })
       }
     })

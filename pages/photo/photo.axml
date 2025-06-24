@@ -6,13 +6,8 @@
     <view class="btm">
       <view >
         <view class="page-section">
-          <picker onChange="bindPickerChange" value="{{index}}" range="{{array}}">
-            <view class="row">
-              <view class="row-extra test">用户-{{user}}</view>
-            </view>
-          </picker>
+          <view class="row-extra test">用户-{{user}}</view>
         </view>
-      
       </view>
       <view><button type="secondary" onTap="takePhoto2" class="btn"></button></view>
       <view></view>

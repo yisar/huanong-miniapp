@@ -17,13 +17,12 @@ Page({
   },
   onLoad(query) {
     // 页面加载
-    const tests = my.getStorageSync({
-      key: "tests"
+    const user = my.getStorageSync({
+      key: 'userstring'
     })
-
+    console.log(user)
     this.setData({
-      array: tests.data || [],
-      index: 0
+      user: user.data
     })
 
   },
@@ -87,60 +86,6 @@ Page({
       },
     });
 
-  },
-  // 检查并请求定位权限
-  onCanvasReady() {
-    my.createSelectorQuery().select('#canvas').node().exec((res) => {
-      const canvas = res[0].node
-      const {
-        windowWidth,
-        windowHeight,
-        pixelRatio
-      } = my.getSystemInfoSync();
-      canvas.width = windowWidth * pixelRatio
-      canvas.height = (windowHeight * 0.75) * pixelRatio
-    })
-  },
-  drawWatermark() {
-    const ctx = my.createCanvasContext('water');
-    const {
-      windowWidth,
-      windowHeight,
-      pixelRatio
-    } = my.getSystemInfoSync();
-
-    // ctx.save()
-    ctx.setTransform(1, 0, 0, 1, 0, 0)
-
-    ctx.scale(1 / pixelRatio, 1 / pixelRatio)
-
-
-    // 绘制原图（按屏幕宽度缩放）
-    ctx.drawImage(this.data.photo, 0, 0, windowWidth * pixelRatio, (windowHeight * 0.75) * pixelRatio);
-
-    // 设置水印样式
-    ctx.setFontSize(14 * pixelRatio);
-    ctx.setFillStyle('rgba(64,224,208)');
-
-    // 平铺水印文字
-    console.log(this.data.lat, this.data.lon)
-    ctx.fillText(`方位:${this.data.deg}°${this.data.dir}`, 8, 20 * pixelRatio);
-    ctx.fillText(`经度:${this.data.lat}`, 8, 40 * pixelRatio);
-    ctx.fillText(`纬度:${this.data.lon}`, 8, 60 * pixelRatio);
-    ctx.draw(false, () => {
-      // this.canvasToImage(windowWidth, (windowHeight * 0.75), pixelRatio)
-      // this.saveImage(res.apFilePath)
-    });
-    // console.log(this.data.height)
-
-    // ctx.restore()
-
-
-  },
-  showWater() {
-    this.setData({
-      show: false
-    })
   },
   saveImage(path) {
     my.saveImageToPhotosAlbum({
@@ -208,7 +153,7 @@ Page({
       });
     }, 1000)
   },
-  uploadImage() {
+  uploadImage(value) {
     const that = this
     my.uploadFile({
       filePath: that.data.photo,
@@ -219,7 +164,7 @@ Page({
       success(res) {
         const data = JSON.parse(res.data)
         console.log(data.path)
-        const name = that.data.array[that.data.index]
+        const name = that.data.user
 
         my.request({
           url: `https://huanong.beixibaobao.com/api/photo`,
@@ -228,6 +173,7 @@ Page({
           data: {
             name,
             preload: {
+              value,
               path: data.path,
               lat: that.data.lat,
               lon: that.data.lon,
@@ -235,7 +181,7 @@ Page({
             }
           },
           success(res) {
-            console.log(222)
+            console.log(res)
             my.showToast({
               content: "入库成功"
             })
@@ -303,14 +249,20 @@ Page({
           photo: tempFilePath,
         }, () => {
 
-          that.modifyImage()
+          // that.modifyImage()
 
-          setTimeout(() => {
-            that.uploadImage()
-          }, 1000)
+          my.prompt({
+            message:"请确保拍照内容大约为一平方米",
+            title: "请输入每平方米产量",
+            success(res) {
+              console.log(res)
+              setTimeout(() => {
+                that.uploadImage(res.inputValue)
+              }, 1000)
 
-
-          this.saveImage(tempFilePath)
+              this.saveImage(tempFilePath)
+            }
+          })
 
           // this.drawWatermark()
         })

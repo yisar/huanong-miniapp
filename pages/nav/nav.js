@@ -9,6 +9,11 @@ Page({
       url: '/pages/photo/photo'
     })
   },
+  toPhotoExtra() {
+    my.navigateTo({
+      url: '/pages/photo-extra/photo'
+    })
+  },
   toPhotoRecord() {
     my.showToast({
       content: "暂未开放，敬请期待"
