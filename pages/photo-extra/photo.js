@@ -153,10 +153,10 @@ Page({
       });
     }, 1000)
   },
-  uploadImage(value) {
+  uploadImage(path,value) {
     const that = this
     my.uploadFile({
-      filePath: that.data.photo,
+      filePath: path,
       url: "https://tuchuang.deno.dev/taobao-proxy",
       name: "upload",
       hideLoading: true,
@@ -166,12 +166,14 @@ Page({
         console.log(data.path)
         const name = that.data.user
 
+
         my.request({
           url: `https://huanong.beixibaobao.com/api/photo`,
           method: "POST",
           dataType: "json",
           data: {
             name,
+            path: data.path,
             preload: {
               value,
               path: data.path,
@@ -252,12 +254,12 @@ Page({
           // that.modifyImage()
 
           my.prompt({
-            message:"请确保拍照内容大约为一平方米",
+            message: "请确保拍照内容大约为一平方米",
             title: "请输入每平方米产量",
             success(res) {
               console.log(res)
               setTimeout(() => {
-                that.uploadImage(res.inputValue)
+                that.uploadImage(tempFilePath,res.inputValue)
               }, 1000)
 
               this.saveImage(tempFilePath)

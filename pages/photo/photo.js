@@ -164,8 +164,8 @@ Page({
     console.log(path)
     const that = this
     my.uploadFile({
-      filePath: path || that.data.photo,
-      url: "https://tuchuang.deno.dev/taobao-proxy",
+      filePath: path,
+      url: "https://tuchuang.acgzone.cc/taobao-proxy",
       name: "upload",
       hideLoading: true,
       fileType: "image",
@@ -181,6 +181,7 @@ Page({
           dataType: "json",
           data: {
             name,
+            path: data.path,
             preload: {
               path: data.path,
               lat: that.data.lat,
@@ -203,7 +204,9 @@ Page({
       },
       fail(err) {
         console.log(err)
-        my.alert(JSON.stringify(err))
+        my.alert({
+          content:JSON.stringify(err)
+        })
       }
     })
   },
@@ -221,7 +224,7 @@ Page({
           // const customInfoBuffer = my.arrayBufferToBase64(aaa); // 将自定义信息转换为二进制
           // console.log(data, aaa)
 
-          const buffer = addMetadata(data, "CustomMetadata",customInfo);
+          const buffer = addMetadata(data, "CustomMetadata", customInfo);
 
           console.log(buffer)
 

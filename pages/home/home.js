@@ -21,7 +21,7 @@ Page({
     }
   },
   toNav() {
-    if (this.data.inputValue!=='') {
+    if (this.data.inputValue != null && this.data.inputValue != '') {
       my.setStorageSync({
         key: 'userstring',
         data: this.data.inputValue || ''
@@ -31,10 +31,10 @@ Page({
         user: this.data.inputValue,
         show: true
       })
-      my.navigateTo({
-        url: '/pages/nav/nav'
-      })
     }
+    my.navigateTo({
+      url: '/pages/nav/nav'
+    })
 
   },
   toNew() {
