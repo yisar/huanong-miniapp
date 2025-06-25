@@ -153,34 +153,27 @@ Page({
       });
     }, 1000)
   },
-  uploadImage(path,value) {
+  uploadImage(path, value) {
     const that = this
     my.uploadFile({
       filePath: path,
-      url: "https://tuchuang.deno.dev/taobao-proxy",
+      url: "https://tuchuang.acgzone.cc/taobao-proxy",
       name: "upload",
       hideLoading: true,
       fileType: "image",
       success(res) {
         const data = JSON.parse(res.data)
         console.log(data.path)
-        const name = that.data.user
-
 
         my.request({
           url: `https://huanong.beixibaobao.com/api/photo`,
           method: "POST",
           dataType: "json",
           data: {
-            name,
-            path: data.path,
-            preload: {
-              value,
-              path: data.path,
-              lat: that.data.lat,
-              lon: that.data.lon,
-              deg: that.data.deg
-            }
+            user: that.data.user,
+            photo: data.path,
+            loc: [that.data.lat, that.data.lon, that.data.deg].join(','),
+            text: value
           },
           success(res) {
             console.log(res)
@@ -259,7 +252,7 @@ Page({
             success(res) {
               console.log(res)
               setTimeout(() => {
-                that.uploadImage(tempFilePath,res.inputValue)
+                that.uploadImage(tempFilePath, res.inputValue)
               }, 1000)
 
               this.saveImage(tempFilePath)

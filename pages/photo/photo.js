@@ -160,7 +160,7 @@ Page({
       });
     }, 1000)
   },
-  uploadImage(path) {
+  uploadImage(path, value = '') {
     console.log(path)
     const that = this
     my.uploadFile({
@@ -173,21 +173,16 @@ Page({
         console.log(1234)
         const data = JSON.parse(res.data)
         console.log(data.path)
-        const name = that.data.user
 
         my.request({
           url: `https://huanong.beixibaobao.com/api/photo`,
           method: "POST",
           dataType: "json",
           data: {
-            name,
-            path: data.path,
-            preload: {
-              path: data.path,
-              lat: that.data.lat,
-              lon: that.data.lon,
-              deg: that.data.deg
-            }
+            user: that.data.user,
+            photo: data.path,
+            loc: [that.data.lat, that.data.lon, that.data.deg].join(','),
+            text: value
           },
           success(res) {
             console.log(222)
@@ -205,7 +200,7 @@ Page({
       fail(err) {
         console.log(err)
         my.alert({
-          content:JSON.stringify(err)
+          content: JSON.stringify(err)
         })
       }
     })
