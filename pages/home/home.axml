@@ -1,6 +1,9 @@
-<view>
-  <view a:if={{!show}} ><input type="nickname" placeholder="请输入用户名" onInput="onInput"></input></view>
-  <view a:if={{show}} class="username">{{user}}</view>
-  <button size="default" type="primary" onTap="toNav">下一步</button>
-  <view class="username">用户名是用来确认数据归属，请使用真实名称</view>
+<view class="wrap"> 
+  <view>
+    <view a:if={{!show}} ><input type="nickname" placeholder="请输入用户名" onInput="onInput"></input></view>
+    <view a:if={{show}} class="username">{{user}}</view>
+    <button size="default" type="primary" onTap="toNav">下一步</button>
+    <view class="username">用户名是用来确认数据归属，请使用真实名称</view>
+  </view>
+  <view class="footer" onTap="deleteUser">清除本地用户名</view>
 </view>

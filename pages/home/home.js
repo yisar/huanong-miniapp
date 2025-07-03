@@ -20,6 +20,15 @@ Page({
       })
     }
   },
+  deleteUser() {
+    my.removeStorageSync({
+      key: "userstring"
+    })
+    my.showToast({
+      content:"删除成功"
+    });
+    this.setData()
+  },
   toNav() {
     if (this.data.inputValue != null && this.data.inputValue != '') {
       my.setStorageSync({

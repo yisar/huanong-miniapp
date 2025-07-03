@@ -9,9 +9,11 @@ Page({
   },
   getCurrentLocation() {
     const that = this
-    const user = my.getStorageInfoSync('userstring')
+    const user = my.getStorageSync({
+      key: 'userstring'
+    })
 
-    setInterval(() => {
+    this.timer = setInterval(() => {
       my.getLocation({
         cacheTimeout: 0,
         success: (res) => {

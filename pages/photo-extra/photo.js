@@ -72,7 +72,7 @@ Page({
   onShow() {
 
     const that = this;
-    my.getLocation({
+    this.timer = my.getLocation({
       type: 0, // 获取经纬度和省市区县数据
       cacheTimeout: 0,
       success: (res) => {
@@ -157,7 +157,7 @@ Page({
     const that = this
     my.uploadFile({
       filePath: path,
-      url: "https://tuchuang.acgzone.cc/taobao-proxy",
+      url: "https://upload.acgzone.cc/upload",
       name: "upload",
       hideLoading: true,
       fileType: "image",
@@ -248,7 +248,7 @@ Page({
 
           my.prompt({
             message: "请确保拍照内容大约为一平方米",
-            title: "请输入每平方米产量",
+            title: "请输入每平方米植株数",
             success(res) {
               console.log(res)
               setTimeout(() => {
