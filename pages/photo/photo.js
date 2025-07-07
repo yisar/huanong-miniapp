@@ -1,16 +1,3 @@
-import {
-  addMetadata
-} from './extf'
-
-function stringToArrayBuffer(str) {
-  const array = new Uint8Array(str.length);
-  for (let i = 0; i < str.length; i++) {
-    array[i] = str.charCodeAt(i) & 0xff; // 获取字符的 ASCII 值并取低 8 位
-  }
-  return array.buffer;
-}
-
-
 Page({
   data: {
     show: false,
@@ -161,11 +148,10 @@ Page({
     }, 1000)
   },
   uploadImage(path, value = '') {
-    console.log(path)
     const that = this
     my.uploadFile({
       filePath: path,
-      url: "https://upload.acgzone.cc/upload",
+      url: "https://upload.beixibaobao.com/upload",
       name: "upload",
       hideLoading: true,
       fileType: "image",
@@ -205,46 +191,7 @@ Page({
       }
     })
   },
-  async modifyImage(pp) {
-    const that = this
-    return new Promise(r => {
-      my.getFileSystemManager().readFile({
-        filePath: pp, // 图片路径
 
-        // encoding: 'binary', // 以二进制方式读取
-        success(res) {
-          let data = res.data;
-          const customInfo = `${that.data.lat},${that.data.lon},${that.data.deg}`; // 自定义信息
-          const aaa = stringToArrayBuffer(customInfo)
-          // const customInfoBuffer = my.arrayBufferToBase64(aaa); // 将自定义信息转换为二进制
-          // console.log(data, aaa)
-
-          const buffer = addMetadata(data, "CustomMetadata", customInfo);
-
-          console.log(buffer)
-
-          const path = `${my.env.USER_DATA_PATH}/test.png`
-          my.getFileSystemManager().writeFile({
-            // filePath: that.data.photo, // 修改后的文件路径
-            filePath: path,
-            data: buffer,
-            encoding: 'binary',
-            success() {
-              console.log('Custom info added successfully.');
-              r(path)
-            },
-            fail(err) {
-              console.error('Failed to write file:', err);
-            }
-          });
-        },
-        fail(err) {
-          console.error('Failed to read file:', err);
-        }
-      });
-    })
-
-  },
   takePhoto2() {
     const that = this
     this.setData({

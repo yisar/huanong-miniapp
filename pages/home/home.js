@@ -19,6 +19,17 @@ Page({
         show: true
       })
     }
+
+    my.getLocation({
+      cacheTimeout: 0,
+      success: (res) => {
+        console.log(res)
+        // 提前授权
+      },
+      fail: (error) => {
+        console.error('定位失败: ', JSON.stringify(error));
+      },
+    });
   },
   deleteUser() {
     my.removeStorageSync({
@@ -27,7 +38,9 @@ Page({
     my.showToast({
       content:"删除成功"
     });
-    this.setData()
+    this.setData({
+      show:false
+    })
   },
   toNav() {
     if (this.data.inputValue != null && this.data.inputValue != '') {

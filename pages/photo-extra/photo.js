@@ -157,7 +157,7 @@ Page({
     const that = this
     my.uploadFile({
       filePath: path,
-      url: "https://upload.acgzone.cc/upload",
+      url: "https://upload.beixibaobao.com/upload",
       name: "upload",
       hideLoading: true,
       fileType: "image",
