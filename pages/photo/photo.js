@@ -43,18 +43,15 @@ Page({
     } else if (deg > 290 && deg < 340) {
       dir = '西北';
     }
-    this.setData({
-      deg,
-      dir
-    })
+    return {dir, deg}
   },
 
   startLuoPan() {
     my.startCompass();
     my.onCompassChange((res) => {
-      // console.log(res)
-      this.getDirection(res.direction)
-
+      console.log(res)
+      const data = this.getDirection(res.direction)
+      this.setData(data)
     });
 
   },
@@ -151,7 +148,7 @@ Page({
     const that = this
     my.uploadFile({
       filePath: path,
-      url: "https://upload.beixibaobao.com/upload",
+      url: "https://upload.calibur.cn/upload",
       name: "upload",
       hideLoading: true,
       fileType: "image",
@@ -161,7 +158,7 @@ Page({
         console.log(data.path)
 
         my.request({
-          url: `https://huanong.beixibaobao.com/api/photo`,
+          url: `https://huanong.calibur.cn/api/photo`,
           method: "POST",
           dataType: "json",
           data: {

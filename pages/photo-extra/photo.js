@@ -8,6 +8,7 @@ function stringToArrayBuffer(str) {
 
 Page({
   data: {
+    showDialog: false,
     show: false,
     height: 0,
     photo: '',
@@ -54,18 +55,15 @@ Page({
     } else if (deg > 290 && deg < 340) {
       dir = '西北';
     }
-    this.setData({
-      deg,
-      dir
-    })
+    return {deg, dir}
   },
 
   startLuoPan() {
     my.startCompass();
     my.onCompassChange((res) => {
-      // console.log(res)
-      this.getDirection(res.direction)
-
+      console.log(res)
+      const data = this.getDirection(res.direction)
+      this.setData(data)
     });
 
   },
@@ -157,7 +155,7 @@ Page({
     const that = this
     my.uploadFile({
       filePath: path,
-      url: "https://upload.beixibaobao.com/upload",
+      url: "https://upload.calibur.cn/upload",
       name: "upload",
       hideLoading: true,
       fileType: "image",
@@ -166,7 +164,7 @@ Page({
         console.log(data.path)
 
         my.request({
-          url: `https://huanong.beixibaobao.com/api/photo`,
+          url: `https://huanong.calibur.cn/api/photo`,
           method: "POST",
           dataType: "json",
           data: {
@@ -179,6 +177,9 @@ Page({
             console.log(res)
             my.showToast({
               content: "入库成功"
+            })
+            that.setData({
+              showDialog: false
             })
           },
           fail: function (error) {
@@ -227,6 +228,44 @@ Page({
       }
     });
   },
+  closeMask() {
+    this.setData({
+      showDialog: false
+    })
+  },
+
+  onInput1(e) {
+    this.setData({
+      hangju: e.detail.value,
+    });
+  },
+
+  onInput2(e) {
+    this.setData({
+      zhu: e.detail.value,
+    });
+  },
+
+  onInput3(e) {
+    this.setData({
+      dikuan: e.detail.value,
+    });
+  },
+
+  uploadResult() {
+    const that = this
+    setTimeout(() => {
+      if (!this.data.hangju || !this.data.zhu) {
+        my.alert({
+          content: "行距和株数必填"
+        })
+        return
+      }
+      that.uploadImage(this.data.photo, `行距:${this.data.hangju}|株数:${this.data.zhu}|地宽:${this.data.dikuan}`)
+    }, 1000)
+
+    this.saveImage(this.data.photo)
+  },
   takePhoto2() {
     const that = this
     this.setData({
@@ -244,20 +283,18 @@ Page({
           photo: tempFilePath,
         }, () => {
 
-          // that.modifyImage()
-
-          my.prompt({
-            message: "请确保拍照内容大约为一平方米",
-            title: "请输入每平方米植株数",
-            success(res) {
-              console.log(res)
-              setTimeout(() => {
-                that.uploadImage(tempFilePath, res.inputValue)
-              }, 1000)
-
-              this.saveImage(tempFilePath)
-            }
+          this.setData({
+            showDialog: true
           })
+
+          // my.prompt({
+          //   message: "请确保拍照内容大约为一平方米",
+          //   title: "请输入每平方米植株数",
+          //   success(res) {
+          //     console.log(res)
+
+          //   }
+          // })
 
           // this.drawWatermark()
         })

@@ -12,6 +12,32 @@
   opacity: 0;
 }
 
+.dialog {
+  position: fixed;
+  width: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 8px;
+  z-index: 999999999;
+  background: #fff;
+  padding: 15px 5px;
+}
+
+.dialog button{
+  color: #fff;
+}
+
+.mask{
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  z-index: 999;
+}
+
 .preview,
 .camera {
   width: 100vw;
@@ -72,7 +98,7 @@
 }
 
 .test {
-  color:  rgb(99, 207, 217);
+  color: rgb(99, 207, 217);
   /* background-color: #fff; */
   background: rgba(2, 255, 255, 0.5);
   margin: 10px;
@@ -80,6 +106,6 @@
   border-radius: 8px;
 }
 
-.btm view{
+.btm view {
   flex: 1;
 }

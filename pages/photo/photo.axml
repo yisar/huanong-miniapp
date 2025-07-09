@@ -2,7 +2,8 @@
 <view class="page"> 
   <view class="top">
     <camera device-position="back" flash="off" binderror="error" class="camera" id="camera" style="width: 100vw; height: 75vh;"></camera>
-    <!-- <canvas id="water" canvas-id="water" style="width: 100vw; height: 75vh;" a:if="{{show}}" onTap="showWater"></canvas> -->
+    <!-- <image class="camera" id="camera" style="width: 100vw; height: 75vh;" src="https://dd-static.jd.com/ddimgp/jfs/t20260811/317834/20/14278/291260/686b1e3aF38403ef5/7eb26c7a8e4a5592.jpg"></image> -->
+    
     <view class="btm">
       <view >
         <view class="page-section">
@@ -10,8 +11,13 @@
         </view>
       </view>
       <view><button type="secondary" onTap="takePhoto2" class="btn"></button></view>
-      <view></view>
+      <view></view
     </view>
-  </view>
 
+  </view>
+<view class="status">
+        <view>{{lat}}</view>
+        <view>{{lon}}</view>
+        <view>{{dir}} {{deg}}°</view>
+      </view>
 </view>
