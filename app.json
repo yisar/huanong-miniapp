@@ -3,8 +3,10 @@
     "pages/home/home",
     "pages/nav/nav",
     "pages/photo/photo",
-    "pages/photo-extra/photo",
-    "pages/web/web"
+    "pages/midu/photo",
+    "pages/web/web",
+    "pages/ditu2/web",
+    "pages/ditu4/web"
   ],
   "window": {
     "defaultTitle": "华农田间调查小程序"

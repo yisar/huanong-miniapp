@@ -10,18 +10,18 @@
 
   <view class="top">
     <camera device-position="back" flash="off" binderror="error" class="camera" id="camera" style="width: 100vw; height: 75vh;"></camera>
-    <!-- <image class="camera" id="camera" style="width: 100vw; height: 75vh;" src="https://dd-static.jd.com/ddimgp/jfs/t20260811/295772/3/19320/350917/686b1e8eF4d83cfdc/849a0e9e8a4381cc.jpg"></image> -->
-    <!-- <canvas id="water" canvas-id="water" style="width: 100vw; height: 75vh;" a:if="{{show}}" onTap="showWater"></canvas> -->
     <view class="btm">
-      <view >
+      <view>
         <view class="page-section">
-          <view class="row-extra test">用户-{{user}}</view>
+          <view class="{{points?'row-extra test':'row-extra test red'}}" onTap="toMini4">{{'田块-'+(points?'已选择':'未选择')}}</view>
         </view>
-      
+
       </view>
       <view><button type="secondary" onTap="takePhoto2" class="btn"></button></view>
       <view>
-        
+        <view class="page-section">
+          <view class="row-extra test">用户-{{user}}</view>
+        </view>
       </view>
     </view>
     <view class="status">

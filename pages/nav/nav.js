@@ -1,8 +1,23 @@
 Page({
   data: {
-    title: ""
+    title: "",
+    clickCount: 0,
+    show: false
   },
   onLoad() {},
+
+  add() {
+    const { clickCount, show } = this.data;
+    const newCount = clickCount + 1;
+    this.setData({
+      clickCount: newCount
+    });
+    if (newCount >= 5 &&!show) {
+      this.setData({
+        show: true
+      });
+    }
+  },
 
   toPhoto() {
     my.navigateTo({
@@ -11,7 +26,7 @@ Page({
   },
   toPhotoExtra() {
     my.navigateTo({
-      url: '/pages/photo-extra/photo'
+      url: '/pages/midu/photo'
     })
   },
   toPhotoRecord() {

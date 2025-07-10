@@ -1,0 +1,3 @@
+<view>
+  <web-view src="https://huanong.calibur.cn/mini-ditu.html?points=4" id="web-view-1" onMessage="onMessage"/>
+</view>

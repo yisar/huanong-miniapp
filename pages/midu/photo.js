@@ -1,11 +1,3 @@
-function stringToArrayBuffer(str) {
-  const array = new Uint8Array(str.length);
-  for (let i = 0; i < str.length; i++) {
-    array[i] = str.charCodeAt(i) & 0xff; // 获取字符的 ASCII 值并取低 8 位
-  }
-  return array.buffer;
-}
-
 Page({
   data: {
     showDialog: false,
@@ -14,7 +6,11 @@ Page({
     photo: '',
     test: '',
     array: [],
+    points: null,
     index: 0,
+  },
+  onShow() {
+    console.log(getApp().globalData.points)
   },
   onLoad(query) {
     // 页面加载
@@ -27,6 +23,12 @@ Page({
     })
 
   },
+  toMini4() {
+    my.navigateTo({
+      url: '/pages/mini-ditu/web'
+    })
+  },
+
   bindPickerChange(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value);
     this.setData({
@@ -55,7 +57,10 @@ Page({
     } else if (deg > 290 && deg < 340) {
       dir = '西北';
     }
-    return {deg, dir}
+    return {
+      deg,
+      dir
+    }
   },
 
   startLuoPan() {
@@ -170,7 +175,7 @@ Page({
           data: {
             user: that.data.user,
             photo: data.path,
-            loc: [that.data.lat, that.data.lon, that.data.deg].join(','),
+            loc: that.data.points || [that.data.lat, that.data.lon, that.data.deg].join(','),
             text: value
           },
           success(res) {
@@ -194,39 +199,6 @@ Page({
         my.alert(JSON.stringify(err))
       }
     })
-  },
-  modifyImage() {
-    const that = this
-    my.getFileSystemManager().readFile({
-      filePath: this.data.photo, // 图片路径
-      encoding: 'binary', // 以二进制方式读取
-      success(res) {
-        let data = res.data;
-        const customInfo = 'This is custom info'; // 自定义信息
-        const aaa = stringToArrayBuffer(customInfo)
-        // const customInfoBuffer = my.arrayBufferToBase64(aaa); // 将自定义信息转换为二进制
-
-        data += aaa; // 将自定义信息追加到文件末尾
-
-        console.log(that.data.photo)
-
-
-        my.getFileSystemManager().writeFile({
-          filePath: that.data.photo, // 修改后的文件路径
-          data: data,
-          encoding: 'binary',
-          success() {
-            console.log('Custom info added successfully.');
-          },
-          fail(err) {
-            console.error('Failed to write file:', err);
-          }
-        });
-      },
-      fail(err) {
-        console.error('Failed to read file:', err);
-      }
-    });
   },
   closeMask() {
     this.setData({
