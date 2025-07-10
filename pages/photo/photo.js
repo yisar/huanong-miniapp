@@ -170,7 +170,8 @@ Page({
             photo: data.path,
             extra:that.data.points,
             loc: [that.data.lat, that.data.lon, that.data.deg].join(','),
-            text: value
+            text: value,
+            cat:'定位拍照'
           },
           success(res) {
             console.log(222)

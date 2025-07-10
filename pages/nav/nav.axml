@@ -3,5 +3,6 @@
   <view style="display:{{show? 'block' : 'none'}}">
     <button size="default" type="primary" onTap="toPhoto">定位拍照</button>
     <button size="default" type="primary" onTap="toPhotoExtra">密度调查</button>
-    <button size="default" type="primary" onTap="toPhotoRecord">长势调查</button></view>
-</view>
+    <button size="default" type="primary" onTap="toPhotoRecord">产业调查</button>
+  </view>
+</view> 

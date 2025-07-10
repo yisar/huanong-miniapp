@@ -174,7 +174,8 @@ Page({
             photo: data.path,
             loc: [that.data.lat, that.data.lon, that.data.deg].join(','),
             extra: that.data.points,
-            text: value
+            text: value,
+            cat: '密度调查'
           },
           success(res) {
             console.log(res)
