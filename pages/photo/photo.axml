@@ -7,7 +7,7 @@
     <view class="btm">
       <view >
         <view class="page-section">
-          <view class="{{points?'row-extra test':'row-extra test red'}}" onTap="toMini4">{{'路线-'+(points?'已选择':'未选择')}}</view>
+          <view class="{{points?'row-extra test':'row-extra test red'}}" onTap="toMini2">{{'路线-'+(points?'已选择':'未选择')}}</view>
         </view>
       </view>
       <view><button type="secondary" onTap="takePhoto2" class="btn"></button></view>

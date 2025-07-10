@@ -9,9 +9,6 @@ Page({
     points: null,
     index: 0,
   },
-  onShow() {
-    console.log(getApp().globalData.points)
-  },
   onLoad(query) {
     // 页面加载
     const user = my.getStorageSync({
@@ -25,7 +22,7 @@ Page({
   },
   toMini4() {
     my.navigateTo({
-      url: '/pages/mini-ditu/web'
+      url: '/pages/ditu4/web'
     })
   },
 
@@ -175,7 +172,8 @@ Page({
           data: {
             user: that.data.user,
             photo: data.path,
-            loc: that.data.points || [that.data.lat, that.data.lon, that.data.deg].join(','),
+            loc: [that.data.lat, that.data.lon, that.data.deg].join(','),
+            extra: that.data.points,
             text: value
           },
           success(res) {

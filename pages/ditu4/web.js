@@ -14,9 +14,7 @@ Page({
     console.log(e.detail.points)
     if (pages.length > 1) {
       const prevPage = pages[pages.length - 2]
-
       console.log(points)
-
       // 直接修改上一页的数据
       prevPage.setData({
         points

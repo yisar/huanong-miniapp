@@ -15,6 +15,11 @@ Page({
     })
 
   },
+  toMini2() {
+    my.navigateTo({
+      url: '/pages/ditu2/web'
+    })
+  },
   bindPickerChange(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value);
     this.setData({
@@ -153,7 +158,6 @@ Page({
       hideLoading: true,
       fileType: "image",
       success(res) {
-        console.log(1234)
         const data = JSON.parse(res.data)
         console.log(data.path)
 
@@ -164,6 +168,7 @@ Page({
           data: {
             user: that.data.user,
             photo: data.path,
+            extra:that.data.points,
             loc: [that.data.lat, that.data.lon, that.data.deg].join(','),
             text: value
           },
