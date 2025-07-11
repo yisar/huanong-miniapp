@@ -196,6 +196,12 @@ Page({
   },
 
   takePhoto2() {
+    if(!this.data.points){
+      my.alert({
+        content:"左下角先选线路噻"
+      })
+      return
+    }
     const that = this
     this.setData({
       show: true

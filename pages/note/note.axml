@@ -1,0 +1,14 @@
+<view class="container">
+  <form onSubmit="bindFormSubmit">
+  <view class="text-wrap">
+    <textarea placeholder="请输入调查描述信息" name="textarea" row="5" name="textarea"/>
+  </view>
+  <view class="spot username">
+    <text>地点：</text>
+    <text>{{lon + ',' + lat}}</text>
+  </view>
+  <button form-type="submit">上传</button>
+  <view class="username">此处用来上传一些调查补充信息，比如此处产量较低，长势不均，可能播种时机，已经干旱程度有关</view>
+</form>
+
+</view>
