@@ -7,8 +7,16 @@
     <text>地点：</text>
     <text>{{lon + ',' + lat}}</text>
   </view>
+  <view class="imgs">
+    <view class="item" a:for="{{ imgs }}">
+      <image src="{{item}}" mode="aspectFill"></image>
+    </view>
+    <view class="item add">
+      <image src="./add.svg" mode="aspectFit" onTap="uploadSingleImage"></image>
+    </view>
+  </view>
   <button form-type="submit">上传</button>
-  <view class="username">此处用来上传一些调查补充信息，比如此处产量较低，长势不均，可能播种时机，已经干旱程度有关</view>
+  <view class="username">示例：此地长势不均，预计减产，播种密度适中，早期受到洪涝影响，目前干旱影响。</view>
 </form>
 
 </view>

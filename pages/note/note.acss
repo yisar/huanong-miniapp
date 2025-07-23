@@ -1,4 +1,4 @@
-.container{
+.container {
   /* display: flex; */
   /* flex: 1;
   align-items: center;
@@ -8,21 +8,23 @@
   height: 100vh;
   margin: 30px auto; */
 }
-.text-wrap{
+
+.text-wrap {
   padding: 10px 20px;
 }
-textarea{
+
+textarea {
   background: #fff;
   border-radius: 10px;
   padding: 10px;
   height: 100px;
 }
 
-.username{
+.username {
   padding: 20px;
 }
 
-.container button{
+.container button {
   flex: 1;
   aspect-ratio: 1;
   margin: 10px auto;
@@ -32,4 +34,42 @@ textarea{
   background: #2b7057;
   border: 1px solid #2b7057;
 
+}
+
+.imgs {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  /* 可根据需要调整 */
+  gap: 10px;
+}
+
+.imgs .item {
+  width: 33.3%;
+  aspect-ratio: 1/1;
+  background: #eee;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 calc(33.333% - 10px); /* 每个元素宽度减去间距 */
+  max-width: calc(33.333% - 10px);
+  overflow: hidden;
+}
+
+.imgs .add image {
+  padding: 10px;
+  height: 40px !important;
+  width: 40px !important;
+  text-align: center;
+
+}
+
+.imgs .item image {
+  height: 100%;
+  width: 100%;
+  text-align: center;
 }
