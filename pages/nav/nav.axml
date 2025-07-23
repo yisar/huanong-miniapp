@@ -1,8 +1,10 @@
 <view class="container" onTap="add">
   <button size="default" type="primary" onTap="toWeb">产量调查</button>
+  <button size="default" type="primary" onTap="toPhoto">定位拍照</button>
+
   <view style="display:{{show? 'block' : 'none'}}">
-    <button size="default" type="primary" onTap="toPhoto">定位拍照</button>
     <button size="default" type="primary" onTap="toPhotoExtra">密度调查</button>
     <button size="default" type="primary" onTap="toPhotoRecord">产业调查</button>
+    <button size="default" type="primary" onTap="toWebGeo">网页定位</button>
   </view>
 </view>

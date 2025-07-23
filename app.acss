@@ -15,6 +15,11 @@ button {
 
 }
 
+.red{
+  color: rgb(201, 59, 59);
+  background: rgb(255, 0, 0,0.5);
+}
+
 input {
   flex: 1;
   aspect-ratio: 1;

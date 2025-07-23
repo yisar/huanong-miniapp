@@ -7,7 +7,8 @@
     "pages/web/web",
     "pages/ditu2/web",
     "pages/ditu4/web",
-    "pages/note/note"
+    "pages/note/note",
+    "pages/geo/web"
   ],
   "window": {
     "defaultTitle": "华农田间调查小程序"

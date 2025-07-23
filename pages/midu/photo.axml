@@ -9,8 +9,8 @@
   <view class="mask" a:if="{{showDialog}}" onTap="closeMask"></view>
 
   <view class="top">
-    <!-- <camera device-position="back" flash="off" binderror="error" class="camera" id="camera" style="width: 100vw; height: 75vh;"></camera> -->
-    <image class="camera" id="camera" style="width: 100vw; height: 75vh;" src="https://dd-static.jd.com/ddimgp/jfs/t20260811/295772/3/19320/350917/686b1e8eF4d83cfdc/849a0e9e8a4381cc.jpg"></image>
+    <camera device-position="back" flash="off" binderror="error" class="camera" id="camera" style="width: 100vw; height: 75vh;"></camera>
+    <!-- <image class="camera" id="camera" style="width: 100vw; height: 75vh;" src="https://dd-static.jd.com/ddimgp/jfs/t20260811/295772/3/19320/350917/686b1e8eF4d83cfdc/849a0e9e8a4381cc.jpg"></image> -->
     <view class="btm">
       <view>
         <view class="page-section">

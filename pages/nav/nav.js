@@ -34,6 +34,11 @@ Page({
       url: '/pages/note/note'
     })
   },
+  toWebGeo() {
+    my.navigateTo({
+      url: '/pages/geo/web'
+    })
+  },
   toWeb() {
     my.navigateTo({
       url: '/pages/web/web'
