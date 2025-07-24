@@ -232,7 +232,7 @@ Page({
         })
         return
       }
-      that.uploadImage(this.data.photo, `行距:${this.data.hangju}|株数:${this.data.zhu}|地宽:${this.data.dikuan}`)
+      that.uploadImage(this.data.photo, `行距:${this.data.hangju}|株数:${this.data.zhu}`)
     }, 1000)
 
     this.saveImage(this.data.photo)
