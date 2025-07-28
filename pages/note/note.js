@@ -103,7 +103,7 @@ Page({
         extra: "",
         loc,
         text,
-        cat: '产业调查'
+        cat: '长势调查'
       },
       success(res) {
         my.showToast({

@@ -1,22 +1,28 @@
 <view class="container">
   <form onSubmit="bindFormSubmit">
-  <view class="text-wrap">
-    <textarea placeholder="请输入调查描述信息" name="textarea" row="5" name="textarea"/>
-  </view>
-  <view class="spot username">
-    <text>地点：</text>
-    <text>{{lon + ',' + lat}}</text>
-  </view>
-  <view class="imgs">
-    <view class="item" a:for="{{ imgs }}">
-      <image src="{{item}}" mode="aspectFill"></image>
+    <view class="text-wrap">
+      <textarea placeholder="请输入调查描述信息" name="textarea" row="5" name="textarea" />
     </view>
-    <view class="item add">
-      <image src="./add.svg" mode="aspectFit" onTap="uploadSingleImage"></image>
+    <view class="spot username">
+      <text>地点：</text>
+      <text>{{lon + ',' + lat}}</text>
     </view>
-  </view>
-  <button form-type="submit">上传</button>
-  <view class="username">示例：此地长势不均，预计减产，播种密度适中，早期受到洪涝影响，目前干旱影响。</view>
-</form>
+    <view class="imgs">
+      <view a:for="{{ imgs }}" class="item">
+        <image src="{{item}}" mode="aspectFill"></image>
+      </view>
+      <view class="item add">
+        <image src="./add.svg" mode="aspectFit" onTap="uploadSingleImage"></image>
+      </view>
+    </view>
+    <button form-type="submit">上传</button>
+    <view class="username">
+      <text>1）什么时期（如抽雄期等），怎么样（长得如何，收到什么灾害），预计减产？或者风调雨顺，预计增产？</text>
+      <text>2）什么时期来看，相较于往年如何（更好，更差？为什么？）</text>
+      <text>3）当地主要种植的什么品种，种植密度如何，常年平均产量大概什么水平（可以找农户调查）</text>
+      <text>4）当地玉米种植管理措施一般如何，比如几次施肥，大概每次施多少，打几次药等，浇水吗，几次等。</text>
+      <text>5）当地农民普遍青睐什么品种，为什么（耐密植？抗旱？产量更高？等）</text>
+    </view>
+  </form>
 
 </view>

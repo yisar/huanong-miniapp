@@ -8,6 +8,8 @@ Page({
     array: [],
     points: null,
     index: 0,
+    hangju: null,
+    zhuju: null
   },
   onLoad(query) {
     // 页面加载
@@ -207,7 +209,7 @@ Page({
 
   onInput1(e) {
     this.setData({
-      hangju: e.detail.value,
+      hang: e.detail.value,
     });
   },
 
@@ -226,25 +228,34 @@ Page({
   uploadResult() {
     const that = this
     setTimeout(() => {
-      if (!this.data.hangju || !this.data.zhu) {
+      if (!this.data.hang || !this.data.zhu) {
         my.alert({
           content: "行距和株数必填"
         })
         return
       }
-      that.uploadImage(this.data.photo, `行距:${this.data.hangju}|株数:${this.data.zhu}`)
+      that.uploadImage(this.data.photo, `行距:${this.data.hang}|株数:${this.data.zhu}`)
     }, 1000)
 
     this.saveImage(this.data.photo)
   },
   takePhoto2() {
-    if(!this.data.points){
+    if (!this.data.points) {
       my.alert({
-        content:"左下角先选择田块噻"
+        content: "左下角先选择田块噻"
       })
       return
     }
     const that = this
+    if (that.data.hangju && that.data.zhuju) {
+      my.showToast({
+        content: "最后上传即可"
+      })
+      this.setData({
+        showDialog: true
+      })
+      return
+    }
     this.setData({
       show: true
     })
@@ -256,25 +267,25 @@ Page({
       quality: 'high',
       success: async (res) => {
         const tempFilePath = res.tempImagePath
-        that.setData({
-          photo: tempFilePath,
-        }, () => {
-
-          this.setData({
-            showDialog: true
+        if (!that.data.hangju) {
+          my.showToast({
+            content: "先拍一个行距"
           })
+          that.setData({
+            hangju: tempFilePath
+          })
+          return
+        }
 
-          // my.prompt({
-          //   message: "请确保拍照内容大约为一平方米",
-          //   title: "请输入每平方米植株数",
-          //   success(res) {
-          //     console.log(res)
-
-          //   }
-          // })
-
-          // this.drawWatermark()
-        })
+        if (!that.data.zhuju) {
+          my.showToast({
+            content: "再拍一个株距"
+          })
+          that.setData({
+            zhuju: tempFilePath
+          })
+          return
+        }
 
       }
     })

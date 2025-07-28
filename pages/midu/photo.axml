@@ -1,26 +1,67 @@
-
 <view class="page">
-  <view class="dialog" a:if="{{showDialog}}">
-    <view ><input placeholder="行距" onInput="onInput1"></input></view>
-    <view ><input placeholder="株距" onInput="onInput2"></input></view>
-    <view><button onTap="uploadResult">上传</button></view>
+  <view a:if="{{showDialog}}" class="dialog">
+    <view >
+      <input placeholder="行距" onInput="onInput1"></input></view>
+    <view >
+      <input placeholder="株距" onInput="onInput2"></input></view>
+    <view>
+      <button onTap="uploadResult">上传</button></view>
   </view>
-  <view class="mask" a:if="{{showDialog}}" onTap="closeMask"></view>
+  <view a:if="{{showDialog}}" class="mask" onTap="closeMask"></view>
 
   <view class="top">
-    <camera device-position="back" flash="off" binderror="error" class="camera" id="camera" style="width: 100vw; height: 75vh;"></camera>
-    <!-- <image class="camera" id="camera" style="width: 100vw; height: 75vh;" src="https://dd-static.jd.com/ddimgp/jfs/t20260811/295772/3/19320/350917/686b1e8eF4d83cfdc/849a0e9e8a4381cc.jpg"></image> -->
+    <camera
+      device-position="back"
+      flash="off"
+      binderror="error"
+      class="camera"
+      id="camera"
+      style="width: 100vw; height: 75vh;"
+    >
+    </camera>
+    <!--<image class="camera" id="camera" style="width: 100vw; height: 75vh;" src="https://dd-static.jd.com/ddimgp/jfs/t20260811/295772/3/19320/350917/686b1e8eF4d83cfdc/849a0e9e8a4381cc.jpg"></image> -->
     <view class="btm">
       <view>
         <view class="page-section">
-          <view class="{{points?'row-extra test':'row-extra test red'}}" onTap="toMini4">{{'田块-'+(points?'已选择':'未选择')}}</view>
+          <view
+            class="{{points?'row-extra test':'row-extra test red'}}"
+            onTap="toMini4"
+          >
+            {{'田块-'+(points?'已选择':'未选择')}}
+          </view>
+          <view class="row-extra test">用户-{{user}}</view>
         </view>
 
       </view>
-      <view><button type="secondary" onTap="takePhoto2" class="btn"></button></view>
       <view>
-        <view class="page-section">
-          <view class="row-extra test">用户-{{user}}</view>
+        <button type="secondary" onTap="takePhoto2" class="btn" a:if="{{ !zhuju || !hangju }}">
+        </button>
+        <button type="secondary" onTap="takePhoto2" class="btn" a:if="{{ zhuju && hangju }}">
+          <icon type="success_no_circle" size="50"  color="#63cfd9"/>
+        </button>
+
+      </view>
+
+      <view>
+        <view class="page-section2">
+          <view a:if="{{ !hangju }}" class="tip">行距</view>
+          <view a:if="{{ hangju }}" class="tip">
+            <image
+              style="width: 100%; height: 100px;border-radius:5px"
+              src="{{hangju}}"
+            >
+            </image>
+
+          </view>
+          <view a:if="{{ !zhuju }}" class="tip">株距</view>
+          <view a:if="{{ zhuju }}" class="tip">
+            <image
+              style="width: 100%; height: 100px;border-radius:5px"
+              src="{{zhuju}}"
+            >
+            </image>
+
+          </view>
         </view>
       </view>
     </view>
