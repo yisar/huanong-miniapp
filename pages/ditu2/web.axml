@@ -1,3 +1,1 @@
-<view>
-  <web-view src="https://huanong.calibur.cn/mini-ditu.html?points=2" id="web-view-1" onMessage="onMessage"/>
-</view>
+<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}"  enable-satellite={{true}} show-location={{true}} scale="16" optimize ={{true}}></map>

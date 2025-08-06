@@ -85,6 +85,7 @@ Page({
 
   bindFormSubmit(e) {
     const text = e.detail.value.textarea
+    const that = this
 
     const user = my.getStorageSync({
       key: "userstring"
@@ -99,7 +100,7 @@ Page({
       dataType: "json",
       data: {
         user,
-        photo: imgs.join(','),
+        photo: that.data.imgs.join(','),
         extra: "",
         loc,
         text,

@@ -39,6 +39,11 @@ Page({
       url: '/pages/geo/web'
     })
   },
+  toMap() {
+    my.navigateTo({
+      url: '/pages/ditu2/web'
+    })
+  },
   toWeb() {
     my.navigateTo({
       url: '/pages/web/web'

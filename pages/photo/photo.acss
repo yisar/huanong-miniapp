@@ -49,6 +49,14 @@
   justify-content: center;
 }
 
+.map #map{
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  height: 200px;
+  width: 125px;
+}
+
 .status {
   position: absolute;
   left: 10px;

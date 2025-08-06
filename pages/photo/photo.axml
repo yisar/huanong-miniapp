@@ -7,7 +7,7 @@
     <view class="btm">
       <view >
         <view class="page-section">
-          <view class="{{points?'row-extra test':'row-extra test red'}}" onTap="toMini2">{{'路线-'+(points?'已选择':'未选择')}}</view>
+          <!-- <view class="{{points?'row-extra test':'row-extra test red'}}" onTap="toMini2">{{'路线-'+(points?'已选择':'未选择')}}</view> -->
         </view>
       </view>
       <view><button type="secondary" onTap="takePhoto2" class="btn"></button></view>
@@ -23,4 +23,8 @@
         <view>{{lon}}</view>
         <view>{{dir}} {{deg}}°</view>
       </view>
+</view>
+
+<view class="map">
+  <map id="map" longitude="{{lon}}" latitude="{{lat}}"  enable-satellite={{true}} show-location={{true}} scale="16"></map>
 </view>
