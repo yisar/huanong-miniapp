@@ -13,6 +13,15 @@
   padding: 10px 20px;
 }
 
+.option{
+  background: #eee;
+  color: #555;
+  padding: 10px;
+  border-radius: 8px;
+  display: inline-block;
+  margin: 0 15px;
+}
+
 textarea {
   background: #fff;
   border-radius: 10px;

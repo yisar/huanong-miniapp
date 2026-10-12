@@ -3,7 +3,13 @@ Page({
     title: "",
     clickCount: 0,
     show: false,
-    imgs: []
+    imgs: [],
+    index: 0,
+    optionList: ['玉米','水稻','大豆','花生','冬小麦','高粱','休耕地']
+  },
+  onPickerChange(e) {
+    const idx = e.detail.value
+    this.setData({ index: idx })
   },
   onLoad() {
     const that = this
@@ -101,7 +107,7 @@ Page({
       data: {
         user,
         photo: that.data.imgs.join(','),
-        extra: "",
+        extra: this.data.optionList[this.data.index],
         loc,
         text,
         cat: '长势调查'

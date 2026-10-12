@@ -1,8 +1,11 @@
 <view class="container">
   <form onSubmit="bindFormSubmit">
     <view class="text-wrap">
-      <textarea placeholder="请输入调查描述信息" name="textarea" row="5" name="textarea" />
+      <textarea placeholder="请输入调查描述信息" name="textarea" row="10" name="textarea" maxlength="1000">
     </view>
+    <picker value="{{index}}" range="{{optionList}}" bindchange="onPickerChange">
+  <view class="option">作物类型：{{optionList[index]}}</view>
+</picker>
     <view class="spot username">
       <text>地点：</text>
       <text>{{lon + ',' + lat}}</text>
@@ -17,7 +20,7 @@
     </view>
     <button form-type="submit">上传</button>
     <view class="username">
-      <text>1）什么时期（如抽雄期等），怎么样（长得如何，收到什么灾害），预计减产？或者风调雨顺，预计增产？</text>
+      <text>1）什么物候期（如抽雄期等），怎么样（长得如何，收到什么灾害），预计减产？或者风调雨顺，预计增产？</text>
       <text>2）什么时期来看，相较于往年如何（更好，更差？为什么？）</text>
       <text>3）当地主要种植的什么品种，种植密度如何，常年平均产量大概什么水平（可以找农户调查）</text>
       <text>4）当地玉米种植管理措施一般如何，比如几次施肥，大概每次施多少，打几次药等，浇水吗，几次等。</text>
