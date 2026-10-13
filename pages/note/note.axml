@@ -3,12 +3,16 @@
     <view class="text-wrap">
       <textarea placeholder="请输入调查描述信息" name="textarea" row="10" name="textarea" maxlength="1000">
     </view>
-    <picker value="{{index}}" range="{{optionList}}" bindchange="onPickerChange">
-  <view class="option">作物类型：{{optionList[index]}}</view>
+    <picker value="{{index}}" range="{{optionList}}" onChange="onPickerChange">
+  <view class="option">作物类型：{{optionList[index]}} ▾</view>
 </picker>
-    <view class="spot username">
-      <text>地点：</text>
-      <text>{{lon + ',' + lat}}</text>
+    <view class="imgs spots">
+      <view class="spot">
+        <text>当前地点：</text><text>{{lon + ',' + lat}}</text>
+      </view>
+      <view class="spot">
+        <text>当前DOY：</text><text>{{doy}}</text>
+      </view>
     </view>
     <view class="imgs">
       <view a:for="{{ imgs }}" class="item">
@@ -19,7 +23,7 @@
       </view>
     </view>
     <button form-type="submit">上传</button>
-    <view class="username">
+    <view class="txt">
       <text>1）什么物候期（如抽雄期等），怎么样（长得如何，收到什么灾害），预计减产？或者风调雨顺，预计增产？</text>
       <text>2）什么时期来看，相较于往年如何（更好，更差？为什么？）</text>
       <text>3）当地主要种植的什么品种，种植密度如何，常年平均产量大概什么水平（可以找农户调查）</text>

@@ -19,7 +19,9 @@
   padding: 10px;
   border-radius: 8px;
   display: inline-block;
-  margin: 0 15px;
+  margin: 0 20px;
+  display: inline-flex;
+  align-items: center;
 }
 
 textarea {
@@ -29,14 +31,22 @@ textarea {
   height: 100px;
 }
 
-.username {
+
+.txt {
   padding: 20px;
+  font-size: 14px;
 }
 
-.username text{
+
+
+/* .spot text{
   display: block;
   font-size: 14px;
   padding: 2px;
+} */
+.spots{
+  display: flex;
+  color: #888;
 }
 
 .container button {
